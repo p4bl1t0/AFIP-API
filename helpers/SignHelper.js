@@ -37,7 +37,13 @@ function sign(options) {
 			command += util.format(' -passin pass:%s', options.password);
 
 		var args = command.split(' ');
-		var child = spawn(args[0], args.splice(1), { encoding: 'base64' });
+		console.log('options openssl path', options.openssl_path);
+		var startCommand = args[0];
+		if (options.openssl_path) {
+			startCommand = options.openssl_path + startCommand;
+		}
+		console.log('start command', startCommand);
+		var child = spawn(startCommand, args.splice(1), { encoding: 'base64' });
 
 		var der = [];
 

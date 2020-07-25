@@ -12,10 +12,10 @@ const afip_urls = {
 };
 
 class AfipUrls {
-	constructor() {
+	constructor(production) {
 		this.urls = afip_urls.HOMO;
 		
-		if(!process.env.HOMO) {
+		if(production) {
 			this.urls = afip_urls.PROD;
 		}
 	}
@@ -29,4 +29,4 @@ class AfipUrls {
 	}
 }
 
-module.exports = new AfipUrls();
+module.exports = AfipUrls;
